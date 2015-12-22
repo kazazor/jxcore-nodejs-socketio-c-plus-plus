@@ -1,0 +1,25 @@
+//
+//  Winnery-Prefix.pch
+//  Winnery
+//
+//  Created by Nilit Rokah on 11/29/15.
+//  Copyright © 2015 Action-Item. All rights reserved.
+//
+
+#ifndef Winnery_Prefix_pch
+#define Winnery_Prefix_pch
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "LogicManager.h"
+
+#endif /* Winnery_Prefix_pch */
+
+
+//#ifdef __OBJC__
+//
+//#import <Foundation/Foundation.h>
+//#import <UIKit/UIKit.h>
+//#import "LogicManager.h"
+//
+//#endif
