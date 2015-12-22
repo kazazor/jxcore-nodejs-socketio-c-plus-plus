@@ -1,4 +1,4 @@
-# jxcore-nodejs-socketio-cplus-plus
+# jxcore-nodejs-socketio-c-plus-plus
 An example project for using JXCore, nodejs, socket.io and c++
 
 # License
