@@ -363,6 +363,7 @@
 				15B9F3291C0B237E008F7B5B /* Sources */,
 				15B9F32A1C0B237E008F7B5B /* Frameworks */,
 				15B9F32B1C0B237E008F7B5B /* Resources */,
+				15B716EF1C2AABF60057A699 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -419,6 +420,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		15B716EF1C2AABF60057A699 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "cd JS/jxcore\n\n// Remove previous build\nrm -rf build\nrm -rf node_modules\n\nnpm install";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		15B9F3291C0B237E008F7B5B /* Sources */ = {

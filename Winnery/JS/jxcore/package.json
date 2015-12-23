@@ -14,19 +14,22 @@
         "node-gyp": "~1.0.1",
         "node-uuid": "~1.4.3"
     },
+    "os": [
+           "linux",
+           "mac",
+           "ios"
+           ],
     "cpu": [
-        "x86_64",
-        "arm64",
-        "ia32"
-    ],
+            "i368",
+            "x86_64",
+            "arm64",
+            "ia32"
+            ],
     "main": "./server.js",
     "engines": {
-        "node": "=0.12.2"
+        "node": "0.12.2"
     },
     "scripts": {
-        "install": "node-gyp configure build"
-    },
-    "include_dirs" : [
-        "<!(node -e \"require('nan')\")"
-    ]
+        "install": "node-gyp configure build --arc=x64"
+    }
 }
