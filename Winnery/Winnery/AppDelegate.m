@@ -86,7 +86,7 @@
         NSLog(@"Error!: %@\nStack:%@\n", errorMessage, errorStack);
     } withName:@"OnError"];
     
-    // Start the application (app.js)
+    // Start the application
     NSArray *params = [NSArray arrayWithObjects:@"server.js", nil];
     [JXcore callEventCallback:@"StartApplication" withParams:params];
 }
