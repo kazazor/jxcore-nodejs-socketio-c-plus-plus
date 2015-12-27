@@ -43,9 +43,11 @@ node server.js
 ### Making the iOS server work:
 #### Still under progress because of the addon.
 #### Currently there are two ways
-#### Correct way:
+##### Correct way:
 1. There is a script written in the Xcode Project -> Target -> Build Phases.
 Currently the "Run script only when installing" is checked. To run the script un-check it. Build the target. It will fail, the problem here is that there is an Apple bug opened on the latest Xcode, problem with gcc.
+
+##### Other way:
 
 2. Check the "Run script only when installing", so that the script won't run. From the terminal, go to Winnery/JS/jxcore and write:
 ```
