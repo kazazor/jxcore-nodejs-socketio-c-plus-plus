@@ -31,13 +31,14 @@ An example project for using JXCore, nodejs, socket.io and c++
 1. Go to "Mac Server" folder.
 2. Open a terminal window.
   1. To compile and build write the following.
-```
-npm install
-```
+  ```
+  npm install
+  ```
   2. Run the server, write:
-```
-node server.js
-```
+  ```
+  node server.js
+  ```
+
 ### Making the iOS server work:
 #### Still under progress because of the addon.
 #### Currently there are two ways
