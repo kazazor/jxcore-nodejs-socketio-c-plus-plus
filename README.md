@@ -6,9 +6,9 @@ An example project for using JXCore, nodejs, socket.io and c++
 2. Installing Node.js (version 0.12.2):  Go to https://nodejs.org/download/release/v0.12.2 download and install.
 3. Open a terminal window.
   1. Check the installed node version by writing the following:
-```
-node -v
-```
+  ```
+  node -v
+  ```
   2. Updating/Installing the npm:
 ("-g" installs it globaly therefore "sudo" is needed and it will request admin password)
 ```
