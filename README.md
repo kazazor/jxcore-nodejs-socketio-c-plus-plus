@@ -5,27 +5,26 @@ An example project for using JXCore, nodejs, socket.io and c++
 1. Install Command Line Tools from Xcode.
 2. Installing Node.js (version 0.12.2):  Go to https://nodejs.org/download/release/v0.12.2 download and install.
 3. Open a terminal window.
-  1. Check the installed node version by writing the following:
+  * Check the installed node version by writing the following:
   ```
   node -v
   ```
-  2. Updating/Installing the npm:
-("-g" installs it globaly therefore "sudo" is needed and it will request admin password)
-```
-sudo npm install npm -g
-```
-  3. Checking the npm version write:
-```
-npm -v
-```
-  4. Install node-gyp:
-```
-sudo npm install node-gyp -g
-```
-  5. Checking the node-gyp version write:
-```
-node-gyp -v
-```
+  * Updating/Installing the npm:  ("-g" installs it globaly therefore "sudo" is needed and it will request admin password)
+  ```
+  sudo npm install npm -g
+  ```
+  * Checking the npm version write:
+  ```
+  npm -v
+  ```
+  * Install node-gyp:
+  ```
+  sudo npm install node-gyp -g
+  ```
+  * Checking the node-gyp version write:
+  ```
+  node-gyp -v
+  ```
 4. Go to the project folder.
 
 ### Making the Mac Server work:
