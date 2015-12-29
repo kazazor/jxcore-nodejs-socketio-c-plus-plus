@@ -1,7 +1,5 @@
 var wines = require('./routes/wines');
-//var wine = require('./build/Release/wineAddon.node');
 var wineAddon = require('bindings')('wineAddon');
-//var wine = require('wineAddon.node');
 
 // Register AddWine method so we can call it from native side
 Mobile('AddWine').register(function(wine){
