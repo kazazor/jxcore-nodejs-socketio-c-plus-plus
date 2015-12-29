@@ -43,12 +43,11 @@ node server.js
 ### Making the iOS server work:
 #### Still under progress because of the addon.
 #### Currently there are two ways
-##### Correct way:
+##### Correct way, from a script in Xcode:
 1. There is a script written in the Xcode Project -> Target -> Build Phases.
-Currently the "Run script only when installing" is checked. To run the script un-check it. Build the target. It will fail, the problem here is that there is an Apple bug opened on the latest Xcode, problem with gcc.
+Currently the "Run script only when installing" is checked. To run the script un-check it. Build the target. It will fail, the problem here is that there is an [Apple bug opened](https://forums.developer.apple.com/thread/4572) on the latest Xcode, problem with gcc (Missing lgcc_s.10.5.dylib), their workaround doesn't work either.
 
-##### Other way:
-
+##### Other way, from the terminal:
 2. Check the "Run script only when installing", so that the script won't run. From the terminal, go to Winnery/JS/jxcore and write:
 ```
 npm install
@@ -58,6 +57,26 @@ Now build and run the target from Xcode. The ios server doesn't work, you will s
 Error!: dlopen(/Users/xxx/Library/Developer/CoreSimulator/Devices/45A45ADF-DC75-4504-A37D-357CACB2C73C/data/Containers/Bundle/Application/839AC5AE-47FE-4B17-8ADD-E80195922FBE/Winnery.app/JS/jxcore/build/Release/wineAddon.node, 1): no suitable image found.  Did find:
 	/Users/xxx/Library/Developer/CoreSimulator/Devices/45A45ADF-DC75-4504-A37D-357CACB2C73C/data/Containers/Bundle/Application/839AC5AE-47FE-4B17-8ADD-E80195922FBE/Winnery.app/JS/jxcore/build/Release/wineAddon.node: mach-o, but not built for iOS simulator
 ```
+#### Working without the addon on the iOS Server:
+Go to socketFunctions.js file and comment out lines:
+2 var wineAddon = require('bindings')('wineAddon');
+14 var message = wineAddon.getMessage();
+15 Mobile('OnWineSelected').call(message);
+Then follow the terminal way.
+
+### Starting from scratch
+1. Open a new project.
+2. Go to Github [jxcore-ios-sample](https://github.com/jxcore/jxcore-ios-sample) and download the project.
+3. Take the JXcore and JS folders from JXcoreSample and add it to your project folder, the JS folder should be added as a reference folder to the project.
+4. Now lets update the JXCore libraries:
+Go to [download in JXCore's web site](http://jxcore.com/downloads/) and download iOS Release Binaries. Take the downloaded libraries and replace them with those in the folder JXCore/bin.
+5. In the project go to the targets Build Phases and add the following:
+* CoreFoundation.framework
+* libstdc++.6.0.9.dylib (In Xcode 7, Apple started to use .tbd, that currently isn't working, you will need to do the following: click '+' then click 'Add Other...' in the keyboard press 'command + shift + g' this will open the 'Go to folder' enter '/usr/lib' and find the lib).
+6. Start writing your server under JS/jxcore folder.
+
+### Working with JXCore
+In progress...
 
 # License
 Copyright 2015 Or Kazaz
