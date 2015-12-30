@@ -30,17 +30,17 @@ An example project for using JXCore, nodejs, socket.io and c++
 ### Making the Mac Server work:
 1. Go to "Mac Server" folder.
 2. Open a terminal window.
-  1. To compile and build write the following.
+  * To compile and build write the following.
   ```
   npm install
   ```
-  2. Run the server, write:
+  * Run the server, write:
   ```
   node server.js
   ```
 
 ### Making the iOS server work:
-#### Still under progress because of the addon.
+*Still under progress because of the addon.*
 #### Currently there are two ways
 ##### Correct way, from a script in Xcode:
 There is a script written in the Xcode Project -> Target -> Build Phases.  Currently the "Run script only when installing" is checked. To run the script un-check it. Build the target.  It will fail, the problem here is that there is an [Apple bug opened](https://forums.developer.apple.com/thread/4572) on the latest Xcode, problem with gcc (Missing lgcc_s.10.5.dylib), their workaround doesn't work either.
@@ -60,6 +60,7 @@ Go to socketFunctions.js file and comment out lines:
   * 2 - var wineAddon = require('bindings')('wineAddon');
   * 14 - var message = wineAddon.getMessage();
   * 15 - Mobile('OnWineSelected').call(message);
+
 Then follow the terminal way.
 
 ### Starting from scratch
