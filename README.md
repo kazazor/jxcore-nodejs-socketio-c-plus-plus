@@ -82,8 +82,6 @@ Take the downloaded libraries and replace them with those in the folder JXCore/b
 6. Start writing your server under JS/jxcore folder.
 
 ### Working with JXCore
-In progress...
-
 Make JXcore instance run under it's own thread:
 ```
 [JXcore useSubThreading];
@@ -98,8 +96,8 @@ Start the engine:
 Start the application:  
 In main.js there's an event called "StartApplication", we are going to call it with our js file.
 ```
-    NSArray *params = [NSArray arrayWithObjects:@"server.js", nil];
-    [JXcore callEventCallback:@"StartApplication" withParams:params];
+NSArray *params = [NSArray arrayWithObjects:@"server.js", nil];
+[JXcore callEventCallback:@"StartApplication" withParams:params];
 ```
 
 #### Events
@@ -119,11 +117,11 @@ In main.js there's an event called "StartApplication", we are going to call it w
 
 **Event on the native side, for example:**
 * In an objective C file lets register an "OnABCDone" event so we can call it from the native side.
-  ```
+	```
 	[JXcore addNativeBlock:^(NSArray *params, NSString *callbackId) {
-							NSLog(@"We arrived to function OnABCDone");
-  } withName:@"OnABCDone"];
-  ```
+								NSLog(@"We arrived to function OnABCDone");
+								} withName:@"OnABCDone"];
+	```
 
 * In the js file lets call the event "OnABCDone".
   ```
@@ -131,18 +129,19 @@ In main.js there's an event called "StartApplication", we are going to call it w
   ```
 
 **We can combine them together** in order to call an event from the native side and get a call back once it's done, it will look as the following:
-* JS file:
+* JS file:  
   ```
 	Mobile('ABC').register(function(){
 								console.log("We arrived to function ABC");
 								Mobile('OnABCDone').call();
 								});
   ```
+
 * Objective C file:
   ```
 	[JXcore addNativeBlock:^(NSArray *params, NSString *callbackId) {
-							NSLog(@"We arrived to function OnABCDone");
-  } withName:@"OnABCDone"];
+								NSLog(@"We arrived to function OnABCDone");
+  							} withName:@"OnABCDone"];
 
   [JXcore callEventCallback:@"ABC" withJSON:nil];
 	```
