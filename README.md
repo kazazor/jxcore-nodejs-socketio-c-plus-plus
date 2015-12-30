@@ -116,9 +116,9 @@ NSArray *params = [NSArray arrayWithObjects:@"server.js", nil];
 	```
 
 **Event on the native side, for example:**
-* In an objective C file lets register an "OnABCDone" event so we can call it from the native side.
+* In an objective C file lets register an "OnABCDone" event so we can call it from the iOS server side.
 	```
-	[JXcore addNativeBlock:^(NSArray *params, NSString *callbackId) {
+	[JXcore addNativeBlock:^(NSArray *params, NSString *callbackId){
 								NSLog(@"We arrived to function OnABCDone");
 								} withName:@"OnABCDone"];
 	```
@@ -139,14 +139,14 @@ NSArray *params = [NSArray arrayWithObjects:@"server.js", nil];
 
 * Objective C file:
   ```
-	[JXcore addNativeBlock:^(NSArray *params, NSString *callbackId) {
+	[JXcore addNativeBlock:^(NSArray *params, NSString *callbackId){
 								NSLog(@"We arrived to function OnABCDone");
   							} withName:@"OnABCDone"];
 
   [JXcore callEventCallback:@"ABC" withJSON:nil];
 	```
 
-**Event on any node JS server side, for example:**
+**An example for an Event on any node JS server side:**
 ```
 socket.on('ABC', function(){
                 console.log("We arrived to function ABC");
