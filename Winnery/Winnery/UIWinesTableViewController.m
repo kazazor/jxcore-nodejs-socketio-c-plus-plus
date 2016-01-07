@@ -3,7 +3,7 @@
 //  Winery
 //
 //  Created by Nilit Rokah on 11/10/15.
-//  Copyright © 2015 hacx. All rights reserved.
+//  Copyright © 2015 Action-Item. All rights reserved.
 //
 
 #import "UIWinesTableViewController.h"
@@ -12,11 +12,46 @@
 
 @property (nonatomic, strong) NSMutableArray *winesArray;
 
+/**
+ * Calls WinesLogic getAllWines to get all items.
+ * On success, will reload the table with the data.
+ * On failure, will call clearDataAndShowServerError.
+ */
 - (void)getAllWines;
+
+/**
+ * Calls WinesLogic addWine to add the object.
+ * On success, will reload the table with the new object.
+ * On failure, will call clearDataAndShowServerError.
+ */
 - (void)addWine;
+
+/**
+ * Calls WinesLogic socketAddWine to add the object.
+ * On success, will reload the table with the new object.
+ * On failure, will call clearDataAndShowServerError.
+ */
 - (void)addWineWithSocetIO;
+
+/** 
+ * Removes all items in winesArray, reloads the table, and calls showMessage with the error.
+ *
+ * @param error     The server error to show.
+ */
+- (void)clearDataAndShowServerError:(NSError *)error;
+
+/**
+ * Scrolls the table to the last item.
+ */
 - (void)scrollToBottom;
-- (void)showErrorAlert:(NSString *)message;
+
+/**
+ * Creates a UIAlertController and shows the message with title given.
+ *
+ * @param message   The message to show in the alert.
+ * @param title     The title for the alert.
+ */
+- (void)showMessage:(NSString *)message withTitle:(NSString *)title;
 
 @end
 
@@ -34,7 +69,10 @@
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UIWinesTableViewCell"];
     
-    [self getAllWines];
+    [[LogicManager sharedInstance] addObserver:self
+                                    forKeyPath:@"baseURLString"
+                                       options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                                       context:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,6 +81,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"baseURLString"]) {
+        NSLog(@"change: %@", change);
+        [self getAllWines];
+    }
+}
+
+#pragma - Private Methods
+
 - (void)getAllWines
 {
     [[[LogicManager sharedInstance] winesLogic] getAllWines:^(NSArray *winesArray) {
@@ -50,7 +98,7 @@
         [self.tableView reloadData];
     }
                                                     failure:^(NSError *error) {
-                                                        [self showErrorAlert:error.description];
+                                                        [self clearDataAndShowServerError:error];
                                                     }];
 }
 
@@ -66,7 +114,7 @@
                                                     [self scrollToBottom];
                                                 }
                                                 failure:^(NSError *error) {
-                                                    [self showErrorAlert:error.description];
+                                                    [self clearDataAndShowServerError:error];
                                                 }];
 }
 
@@ -84,44 +132,36 @@
                                                           [self scrollToBottom];
                                                       }
                                                       failure:^(NSError *error) {
-                                                          [self showErrorAlert:error.description];
+                                                          [self clearDataAndShowServerError:error];
                                                       }];
+}
+
+- (void)clearDataAndShowServerError:(NSError *)error
+{
+    [self.winesArray removeAllObjects];
+    [self.tableView reloadData];
+    [self showMessage:error.description withTitle:@"Error"];
 }
 
 - (void)scrollToBottom
 {
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:([self.tableView numberOfRowsInSection:0] - 1)
-                                                              inSection:0]
-                          atScrollPosition:UITableViewScrollPositionBottom
-                                  animated:YES];
+    if ([self.tableView numberOfRowsInSection:0] > 1)
+    {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:([self.tableView numberOfRowsInSection:0] - 1)
+                                                                  inSection:0]
+                              atScrollPosition:UITableViewScrollPositionBottom
+                                      animated:YES];
+    }
 }
 
-- (void)showErrorAlert:(NSString *)message
+- (void)showMessage:(NSString *)message withTitle:(NSString *)title
 {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
                                                                              message:message
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"Ok"
                                                         style:UIAlertActionStyleCancel
                                                       handler:^(UIAlertAction * _Nonnull action) {
-                                                          [alertController dismissViewControllerAnimated:YES
-                                                                                              completion:^{ }];
-                                                      }]];
-    [self presentViewController:alertController
-                       animated:YES
-                     completion:^{ }];
-}
-
-- (void)showMessage:(NSString *)message
-{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@""
-                                                                             message:message
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Ok"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:^(UIAlertAction * _Nonnull action) {
-                                                          [alertController dismissViewControllerAnimated:YES
-                                                                                              completion:^{ }];
                                                       }]];
     [self presentViewController:alertController
                        animated:YES
@@ -167,7 +207,7 @@
         [[[LogicManager sharedInstance] winesLogic] deleteWine:wineToDelete
                                                        success:^{ }
                                                        failure:^(NSError *error) {
-                                                           [self showErrorAlert:error.description];
+                                                           [self showMessage:error.description withTitle:@"Error"];
                                                            [self.winesArray insertObject:wineToDelete atIndex:indexPath.row];
                                                            [self.tableView reloadData];
                                                        }];
@@ -186,10 +226,10 @@
 {
     [[[LogicManager sharedInstance] winesLogic] socketWineSelected:[_winesArray objectAtIndex:indexPath.row]
                                                            success:^(NSString *message) {
-                                                               [self showMessage:message];
+                                                               [self showMessage:message withTitle:@""];
                                                            }
                                                            failure:^(NSError *error) {
-                                                               [self showErrorAlert:error.description];
+                                                               [self showMessage:error.description withTitle:@"Error"];
                                                            }];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

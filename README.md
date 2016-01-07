@@ -4,7 +4,7 @@ An example project for using JXCore, nodejs (v0.12.2), socket.io and c++
 ### Installation
 1. Install Command Line Tools from Xcode.
 2. Installing Node.js (version 0.12.2):  
-Go to https://nodejs.org/download/release/v0.12.2 download and install.
+Go to [node v0.12.2](https://nodejs.org/download/release/v0.12.2) download and install.
 3. Open a terminal window.
   * Check the installed node version by writing the following:
   ```
@@ -48,6 +48,7 @@ Go to https://nodejs.org/download/release/v0.12.2 download and install.
 There is a script written in the Xcode Project -> Target -> Build Phases.  
 Currently the "Run script only when installing" is checked. To run the script un-check it. Build the target.  
 It will fail, the problem here is that there is an [Apple bug opened](https://forums.developer.apple.com/thread/4572) on the latest Xcode, problem with gcc (Missing lgcc_s.10.5.dylib), their workaround doesn't work either.
+_Need to make the script run with the latest Xcode compiler (llvm)._
 
 ##### Other way, from the terminal:
 Check the "Run script only when installing", so that the script won't run.  
@@ -141,9 +142,9 @@ NSArray *params = [NSArray arrayWithObjects:@"server.js", nil];
   ```
 	[JXcore addNativeBlock:^(NSArray *params, NSString *callbackId){
 								NSLog(@"We arrived to function OnABCDone");
-  							} withName:@"OnABCDone"];
+  							} withName:@"OnABCDone"];  
 
-  [JXcore callEventCallback:@"ABC" withJSON:nil];
+	[JXcore callEventCallback:@"ABC" withJSON:nil];
 	```
 
 **An example for an Event on any node JS server side:**
@@ -153,6 +154,20 @@ socket.on('ABC', function(){
                 socket.emit('OnABCDone');
                 });
 ```
+
+**References:**
+[socket.io](http://socket.io/docs/server-api/)
+
+
+#### Add-ons
+
+
+#### Debuging
+**Debuging the Mac Server**
+[node-inspector](https://github.com/node-inspector/node-inspector)
+
+**Debuging the iOS Server**
+
 
 # License
 Copyright 2015 Or Kazaz

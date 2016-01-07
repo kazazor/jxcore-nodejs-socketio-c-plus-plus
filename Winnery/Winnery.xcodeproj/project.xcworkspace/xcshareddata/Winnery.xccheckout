@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>68DE7EF8-933F-4A99-B804-7AD032F11DE1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Winnery</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>008C7DE98809A699AEF2CA83784BF7DF422B2DDE</key>
+		<string>https://github.com/kazazor/jxcore-nodejs-socketio-c-plus-plus.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Winnery/Winnery.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>008C7DE98809A699AEF2CA83784BF7DF422B2DDE</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/kazazor/jxcore-nodejs-socketio-c-plus-plus.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>008C7DE98809A699AEF2CA83784BF7DF422B2DDE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>008C7DE98809A699AEF2CA83784BF7DF422B2DDE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>jxcore-nodejs-socketio-c-plus-plus</string>
+		</dict>
+	</array>
+</dict>
+</plist>

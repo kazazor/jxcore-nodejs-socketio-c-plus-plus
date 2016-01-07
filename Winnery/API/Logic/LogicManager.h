@@ -3,7 +3,7 @@
 //  Winery
 //
 //  Created by Nilit Rokah on 11/10/15.
-//  Copyright © 2015 hacx. All rights reserved.
+//  Copyright © 2015 Action-Item. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,9 +16,7 @@ WinesLogic *winesLogic();
 
 + (LogicManager *)sharedInstance;
 
-- (void)setBaseURL:(NSURL *)url;
-
-@property (nonatomic, readonly) NSURL *baseURL;
+@property (nonatomic, strong) NSString *baseURLString;
 @property (nonatomic, readonly) WinesLogic *winesLogic;
 
 @end

@@ -16,13 +16,21 @@
 
 @property (nonatomic, strong) UIWinesTableViewController *winesTableViewController;
 
+/**
+ * Starts the JXCore Engine and starts the ios node js server.
+ */
 - (void)startJXCore;
-- (void)showNetworkAlert;
+
+/**
+ * Creates a UIAlertController and shows the given message.
+ *
+ * @param message   The message to show in the alert.
+ */
+- (void)showMessage:(NSString *)message;
 
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -31,12 +39,12 @@
     
     [self startJXCore];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkingReachabilityChanged) name:AFNetworkingReachabilityDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkingReachabilityChanged:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
     
     self.winesTableViewController = [[UIWinesTableViewController alloc] initWithNibName:@"UIWinesTableViewController"
                                                                                  bundle:[NSBundle mainBundle]];
     
-    [[LogicManager sharedInstance] setBaseURL:[NSURL URLWithString:@"http://localhost:3000"]];
+    [[LogicManager sharedInstance] setValue:@"http://localhost:3000" forKey:@"baseURLString"];
     
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:self.winesTableViewController];
     [self.window makeKeyAndVisible];
@@ -72,10 +80,10 @@
 
 - (void)startJXCore
 {
-    // makes JXcore instance running under it's own thread
+    // Makes JXcore instance running under it's own thread
     [JXcore useSubThreading];
     
-    // start engine (main file will be JS/main.js. This is the initializer file)
+    // Start engine (main file will be JS/main.js. This is the initializer file)
     [JXcore startEngine:@"JS/main"];
     
     // Listen to Errors on the JS land
@@ -91,19 +99,9 @@
     [JXcore callEventCallback:@"StartApplication" withParams:params];
 }
 
-- (void)showNetworkAlert
+- (void)showMessage:(NSString *)message
 {
-    NSString *message;
-    if ([[AFNetworkReachabilityManager sharedManager] networkReachabilityStatus] == AFNetworkReachabilityStatusNotReachable)
-    {
-        message = [NSString stringWithFormat:@"Network unreachable\nOffline Mode"];
-        [[LogicManager sharedInstance] setBaseURL:[NSURL URLWithString:@"http://localhost:2000"]];
-    }
-    else
-    {
-        message = @"Network is back";
-        [[LogicManager sharedInstance] setBaseURL:[NSURL URLWithString:@"http://localhost:3000"]];
-    }
+    [self.winesTableViewController.presentedViewController dismissViewControllerAnimated:NO completion:nil];
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
                                                                              message:message
@@ -111,18 +109,29 @@
     [alertController addAction:[UIAlertAction actionWithTitle:@"Ok"
                                                         style:UIAlertActionStyleCancel
                                                       handler:^(UIAlertAction * _Nonnull action) {
-                                                          [alertController dismissViewControllerAnimated:YES completion:^{
-                                                          }];
                                                       }]];
-    [self.window.rootViewController presentViewController:alertController animated:YES completion:^{
+    
+    [self.winesTableViewController presentViewController:alertController
+                                                 animated:YES
+                                               completion:^{
     }];
 }
 
-#pragma mark - AFNetworkingReachabilityDidChangeNotification
-
-- (void)networkingReachabilityChanged
+- (void)networkingReachabilityChanged:(NSNotification *)note
 {
-    [self showNetworkAlert];
+    AFNetworkReachabilityStatus status = [[note.userInfo valueForKey:AFNetworkingReachabilityNotificationStatusItem] integerValue];
+    NSString *message;
+    if (status == AFNetworkReachabilityStatusNotReachable)
+    {
+        message = [NSString stringWithFormat:@"Network unreachable\nOffline Mode"];
+        [[LogicManager sharedInstance] setValue:@"http://localhost:2000" forKey:@"baseURLString"];
+    }
+    else
+    {
+        message = @"Network is back";
+        [[LogicManager sharedInstance] setValue:@"http://localhost:3000" forKey:@"baseURLString"];
+    }
+    [self showMessage:message];
 }
 
 @end

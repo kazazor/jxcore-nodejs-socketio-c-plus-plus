@@ -3,7 +3,7 @@
 //  Winery
 //
 //  Created by Nilit Rokah on 11/10/15.
-//  Copyright © 2015 hacx. All rights reserved.
+//  Copyright © 2015 Action-Item. All rights reserved.
 //
 
 #import "LogicManager.h"
@@ -36,11 +36,6 @@ static LogicManager *sharedInstance = nil;
         _winesLogic = [[WinesLogic alloc] init];
     }
     return self;
-}
-
-- (void)setBaseURL:(NSURL *)url
-{
-    _baseURL = url;
 }
 
 @end

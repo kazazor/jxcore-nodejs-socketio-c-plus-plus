@@ -11,15 +11,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <SystemConfiguration/SystemConfiguration.h>
 #import "LogicManager.h"
 
-#endif /* Winnery_Prefix_pch */
-
-
-//#ifdef __OBJC__
-//
-//#import <Foundation/Foundation.h>
-//#import <UIKit/UIKit.h>
-//#import "LogicManager.h"
-//
-//#endif
+#endif

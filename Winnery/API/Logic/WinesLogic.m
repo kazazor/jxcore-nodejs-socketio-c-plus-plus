@@ -3,7 +3,7 @@
 //  Winery
 //
 //  Created by Nilit Rokah on 11/10/15.
-//  Copyright © 2015 hacx. All rights reserved.
+//  Copyright © 2015 Action-Item. All rights reserved.
 //
 
 #import "WinesLogic.h"
@@ -17,10 +17,12 @@
 
 - (void)getAllWines:(void (^)(NSArray *winesArray))success failure:(void (^)(NSError *))failure
 {
-    [[AFHTTPSessionManager manager] GET:[NSString stringWithFormat:@"%@/wines", [[LogicManager sharedInstance] baseURL]]
+    [[AFHTTPSessionManager manager] GET:[NSString stringWithFormat:@"%@/wines", [[LogicManager sharedInstance] baseURLString]]
                              parameters:nil
-                                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {                                    
-                                    
+                               progress:^(NSProgress * _Nonnull downloadProgress) {
+                                   
+                               }
+                                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                                     NSMutableArray *winesArray = [NSMutableArray array];
                                     for (id obj in responseObject)
                                     {
@@ -36,32 +38,30 @@
                                 }];
 }
 
-- (void)getWineById:(NSString *)wineId success:(void (^)(Wine *wine))success failure:(void (^)(NSError *error))failure
-{
-    
-}
-
 - (void)addWine:(Wine *)wine success:(void (^)())success failure:(void (^)(NSError *error))failure
 {
-    [[AFHTTPSessionManager manager] POST:[NSString stringWithFormat:@"%@/wines", [[LogicManager sharedInstance] baseURL]]
+    [[AFHTTPSessionManager manager] POST:[NSString stringWithFormat:@"%@/wines", [[LogicManager sharedInstance] baseURLString]]
                               parameters:nil
-               constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
-    {
-        NSDictionary *jsonDictionary = [wine jsonDictionary];
-        BOOL isValidJson = [NSJSONSerialization isValidJSONObject:jsonDictionary];
-        if (isValidJson)
-        {
-           NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary
-                                                              options:NSJSONWritingPrettyPrinted error:nil];
-           [formData appendPartWithHeaders:@{@"Content-Type": @"application/json"}
-                                      body:jsonData];
-        }
-        else
-        {
-           NSLog(@"Can not be converted to JSON data");
-        }
-    }
-                                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+               constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                   NSDictionary *jsonDictionary = [wine jsonDictionary];
+                   BOOL isValidJson = [NSJSONSerialization isValidJSONObject:jsonDictionary];
+                   if (isValidJson)
+                   {
+                       NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary
+                                                                          options:NSJSONWritingPrettyPrinted error:nil];
+                       [formData appendPartWithHeaders:@{@"Content-Type": @"application/json"}
+                                                  body:jsonData];
+                   }
+                   else
+                   {
+                       NSLog(@"Can not be converted to JSON data");
+                   }
+
+               }
+                                progress:^(NSProgress * _Nonnull uploadProgress) {
+                                    
+                                }
+                                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                                      success();
                                  }
                                  failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -69,14 +69,9 @@
                                  }];
 }
 
-- (void)updateWine:(Wine *)wine success:(void (^)())success failure:(void (^)(NSError *error))failure
-{
-    
-}
-
 - (void)deleteWine:(Wine *)wine success:(void (^)())success failure:(void (^)(NSError *error))failure
 {
-    [[AFHTTPSessionManager manager] DELETE:[NSString stringWithFormat:@"%@/wines/%@", [[LogicManager sharedInstance] baseURL], wine.itemId]
+    [[AFHTTPSessionManager manager] DELETE:[NSString stringWithFormat:@"%@/wines/%@", [[LogicManager sharedInstance] baseURLString], wine.itemId]
                                 parameters:nil
                                    success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
                                    }
@@ -92,7 +87,8 @@
 {
     NSLog(@"Socket adding wine: %@", [wine json]);
     
-    if ([[AFNetworkReachabilityManager sharedManager] networkReachabilityStatus] == AFNetworkReachabilityStatusNotReachable)
+    if ([[AFNetworkReachabilityManager sharedManager] networkReachabilityStatus] == AFNetworkReachabilityStatusNotReachable ||
+        [[AFNetworkReachabilityManager sharedManager] networkReachabilityStatus] == AFNetworkReachabilityStatusUnknown)
     {
         //*** Using JXCore for local server ***//
         
@@ -108,7 +104,7 @@
     {
         //*** Using SocketIOClient ***//
         
-        SocketIOClient *socketIOClient = [[SocketIOClient alloc] initWithSocketURL:[[[LogicManager sharedInstance] baseURL] absoluteString] options:@{@"log": @YES, @"forcePolling": @YES}];
+        SocketIOClient *socketIOClient = [[SocketIOClient alloc] initWithSocketURL:[[LogicManager sharedInstance] baseURLString] options:@{@"log": @YES, @"forcePolling": @YES}];
         [socketIOClient connect];
         
         // Listen to the connected event
@@ -149,7 +145,7 @@
     {
         //*** Using SocketIOClient ***//
         
-        SocketIOClient *socketIOClient = [[SocketIOClient alloc] initWithSocketURL:[[[LogicManager sharedInstance] baseURL] absoluteString] options:@{@"log": @YES, @"forcePolling": @YES}];
+        SocketIOClient *socketIOClient = [[SocketIOClient alloc] initWithSocketURL:[[LogicManager sharedInstance] baseURLString] options:@{@"log": @YES, @"forcePolling": @YES}];
         [socketIOClient connect];
         
         // Listen to the connected event

@@ -26,6 +26,7 @@
 		153DA6721C15B966005267F4 /* SocketTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153DA65F1C15B966005267F4 /* SocketTypes.swift */; };
 		153DA6731C15B966005267F4 /* SwiftRegex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153DA6601C15B966005267F4 /* SwiftRegex.swift */; };
 		153DA6741C15B966005267F4 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153DA6611C15B966005267F4 /* WebSocket.swift */; };
+		15479C261C3A94F600581B00 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15479C251C3A94F600581B00 /* SystemConfiguration.framework */; };
 		15B9F3321C0B237E008F7B5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B9F3311C0B237E008F7B5B /* main.m */; };
 		15B9F3351C0B237E008F7B5B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B9F3341C0B237E008F7B5B /* AppDelegate.m */; };
 		15B9F33D1C0B237E008F7B5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15B9F33C1C0B237E008F7B5B /* Assets.xcassets */; };
@@ -44,12 +45,9 @@
 		15B9F3661C0B23F8008F7B5B /* libsqlite3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B9F3591C0B23F8008F7B5B /* libsqlite3.a */; };
 		15B9F3671C0B23F8008F7B5B /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B9F35A1C0B23F8008F7B5B /* libuv.a */; };
 		15B9F3681C0B23F8008F7B5B /* JXcore.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B9F35C1C0B23F8008F7B5B /* JXcore.m */; };
-		15B9F37F1C0B2861008F7B5B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B9F36D1C0B2861008F7B5B /* AFHTTPRequestOperation.m */; };
-		15B9F3801C0B2861008F7B5B /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B9F36F1C0B2861008F7B5B /* AFHTTPRequestOperationManager.m */; };
 		15B9F3811C0B2861008F7B5B /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B9F3711C0B2861008F7B5B /* AFHTTPSessionManager.m */; };
 		15B9F3821C0B2861008F7B5B /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B9F3741C0B2861008F7B5B /* AFNetworkReachabilityManager.m */; };
 		15B9F3831C0B2861008F7B5B /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B9F3761C0B2861008F7B5B /* AFSecurityPolicy.m */; };
-		15B9F3841C0B2861008F7B5B /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B9F3781C0B2861008F7B5B /* AFURLConnectionOperation.m */; };
 		15B9F3851C0B2861008F7B5B /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B9F37A1C0B2861008F7B5B /* AFURLRequestSerialization.m */; };
 		15B9F3861C0B2861008F7B5B /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B9F37C1C0B2861008F7B5B /* AFURLResponseSerialization.m */; };
 		15B9F3871C0B2861008F7B5B /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B9F37E1C0B2861008F7B5B /* AFURLSessionManager.m */; };
@@ -65,6 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15044FB21C33E78A003B4E03 /* libgcc_s.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgcc_s.1.dylib; path = usr/lib/libgcc_s.1.dylib; sourceTree = SDKROOT; };
 		151F87CB1C2051CB009D1F2D /* libgcc_s.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libgcc_s.1.tbd; path = usr/lib/libgcc_s.1.tbd; sourceTree = SDKROOT; };
 		153DA5B31C157D06005267F4 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		153DA64F1C15B966005267F4 /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
@@ -86,6 +85,9 @@
 		153DA65F1C15B966005267F4 /* SocketTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketTypes.swift; sourceTree = "<group>"; };
 		153DA6601C15B966005267F4 /* SwiftRegex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRegex.swift; sourceTree = "<group>"; };
 		153DA6611C15B966005267F4 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
+		15479C1F1C3A7C5B00581B00 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
+		15479C231C3A8B5900581B00 /* libdyld.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libdyld.tbd; path = usr/lib/system/libdyld.tbd; sourceTree = SDKROOT; };
+		15479C251C3A94F600581B00 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		15B716F21C311BA40057A699 /* libgcc_s.10.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libgcc_s.10.5.tbd; path = libs/libgcc_s.10.5.tbd; sourceTree = "<group>"; };
 		15B716F41C31282F0057A699 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "../../../../../../../../usr/lib/libstdc++.6.0.9.dylib"; sourceTree = "<group>"; };
 		15B716F61C31294D0057A699 /* libSystem.B.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.B.dylib; path = ../../../../../../../../usr/lib/libSystem.B.dylib; sourceTree = "<group>"; };
@@ -117,10 +119,6 @@
 		15B9F35A1C0B23F8008F7B5B /* libuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libuv.a; sourceTree = "<group>"; };
 		15B9F35B1C0B23F8008F7B5B /* JXcore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXcore.h; sourceTree = "<group>"; };
 		15B9F35C1C0B23F8008F7B5B /* JXcore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXcore.m; sourceTree = "<group>"; };
-		15B9F36C1C0B2861008F7B5B /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
-		15B9F36D1C0B2861008F7B5B /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
-		15B9F36E1C0B2861008F7B5B /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
-		15B9F36F1C0B2861008F7B5B /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
 		15B9F3701C0B2861008F7B5B /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		15B9F3711C0B2861008F7B5B /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		15B9F3721C0B2861008F7B5B /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -128,8 +126,6 @@
 		15B9F3741C0B2861008F7B5B /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
 		15B9F3751C0B2861008F7B5B /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
 		15B9F3761C0B2861008F7B5B /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
-		15B9F3771C0B2861008F7B5B /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
-		15B9F3781C0B2861008F7B5B /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
 		15B9F3791C0B2861008F7B5B /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
 		15B9F37A1C0B2861008F7B5B /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
 		15B9F37B1C0B2861008F7B5B /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
@@ -162,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15ED53451C328551006A64A4 /* libstdc++.6.0.9.dylib in Frameworks */,
+				15479C261C3A94F600581B00 /* SystemConfiguration.framework in Frameworks */,
 				15B9F39F1C0B2BE6008F7B5B /* CoreFoundation.framework in Frameworks */,
 				15B9F35E1C0B23F8008F7B5B /* libchrome_zlib.a in Frameworks */,
 				15B9F3661C0B23F8008F7B5B /* libsqlite3.a in Frameworks */,
@@ -286,10 +283,6 @@
 		15B9F36B1C0B2861008F7B5B /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
-				15B9F36C1C0B2861008F7B5B /* AFHTTPRequestOperation.h */,
-				15B9F36D1C0B2861008F7B5B /* AFHTTPRequestOperation.m */,
-				15B9F36E1C0B2861008F7B5B /* AFHTTPRequestOperationManager.h */,
-				15B9F36F1C0B2861008F7B5B /* AFHTTPRequestOperationManager.m */,
 				15B9F3701C0B2861008F7B5B /* AFHTTPSessionManager.h */,
 				15B9F3711C0B2861008F7B5B /* AFHTTPSessionManager.m */,
 				15B9F3721C0B2861008F7B5B /* AFNetworking.h */,
@@ -297,8 +290,6 @@
 				15B9F3741C0B2861008F7B5B /* AFNetworkReachabilityManager.m */,
 				15B9F3751C0B2861008F7B5B /* AFSecurityPolicy.h */,
 				15B9F3761C0B2861008F7B5B /* AFSecurityPolicy.m */,
-				15B9F3771C0B2861008F7B5B /* AFURLConnectionOperation.h */,
-				15B9F3781C0B2861008F7B5B /* AFURLConnectionOperation.m */,
 				15B9F3791C0B2861008F7B5B /* AFURLRequestSerialization.h */,
 				15B9F37A1C0B2861008F7B5B /* AFURLRequestSerialization.m */,
 				15B9F37B1C0B2861008F7B5B /* AFURLResponseSerialization.h */,
@@ -347,6 +338,10 @@
 		15B9F3A21C0B2EB3008F7B5B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15479C251C3A94F600581B00 /* SystemConfiguration.framework */,
+				15479C231C3A8B5900581B00 /* libdyld.tbd */,
+				15479C1F1C3A7C5B00581B00 /* libc++abi.tbd */,
+				15044FB21C33E78A003B4E03 /* libgcc_s.1.dylib */,
 				15ED53431C32717D006A64A4 /* libstdc++.tbd */,
 				15B716FF1C3137FE0057A699 /* libstdc++.6.dylib */,
 				15B716FB1C312CD50057A699 /* libgcc_s.1.dylib */,
@@ -434,14 +429,14 @@
 /* Begin PBXShellScriptBuildPhase section */
 		15B716EF1C2AABF60057A699 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cd JS/jxcore\n\n# Remove previous build\nrm -rf build\nrm -rf node_modules\n\nnpm install";
 		};
@@ -463,11 +458,8 @@
 				153DA66C1C15B966005267F4 /* SocketIOClientOption.swift in Sources */,
 				153DA6731C15B966005267F4 /* SwiftRegex.swift in Sources */,
 				153DA6651C15B966005267F4 /* SocketEngine.swift in Sources */,
-				15B9F3801C0B2861008F7B5B /* AFHTTPRequestOperationManager.m in Sources */,
 				153DA6701C15B966005267F4 /* SocketParser.swift in Sources */,
-				15B9F3841C0B2861008F7B5B /* AFURLConnectionOperation.m in Sources */,
 				153DA6641C15B966005267F4 /* SocketAnyEvent.swift in Sources */,
-				15B9F37F1C0B2861008F7B5B /* AFHTTPRequestOperation.m in Sources */,
 				153DA6661C15B966005267F4 /* SocketEngineClient.swift in Sources */,
 				15B9F3681C0B23F8008F7B5B /* JXcore.m in Sources */,
 				153DA66E1C15B966005267F4 /* SocketLogger.swift in Sources */,
@@ -606,6 +598,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/JXcore/bin",
 					"/usr/local/Cellar/gcc/5.3.0/lib/gcc/5/**",
+					"$(SDKROOT)/usr/lib/system",
 				);
 				MACH_O_TYPE = mh_execute;
 				ONLY_ACTIVE_ARCH = YES;
@@ -634,6 +627,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/JXcore/bin",
 					"/usr/local/Cellar/gcc/5.3.0/lib/gcc/5/**",
+					"$(SDKROOT)/usr/lib/system",
 				);
 				MACH_O_TYPE = mh_execute;
 				ONLY_ACTIVE_ARCH = NO;
